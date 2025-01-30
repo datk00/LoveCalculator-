@@ -64,8 +64,10 @@ const LoveCalculator = () => {
       // Loại bỏ dấu và chuyển về chữ thường
       let lowerStr1 = name1.toLowerCase()
       let lowerStr2 = name2.toLowerCase()
+
       const normalizedName1 = removeAccents(lowerStr1)
       const normalizedName2 = removeAccents(lowerStr2)
+      
 
       const combinedNames = normalizedName1 + normalizedName2;
 
@@ -77,13 +79,15 @@ const LoveCalculator = () => {
           letterCounts[char] = (letterCounts[char] || 0) + 1;
         }
       }
+      
 
       // Tạo chuỗi số từ số lần xuất hiện
       let numberString = '';
       for (let char in letterCounts) {
         numberString += letterCounts[char];
       }
-
+      console.log(numberString);
+      
       // Tính toán tỉ lệ phần trăm
       while (numberString.length > 2) {
         let newNumberString = '';
@@ -112,7 +116,7 @@ const LoveCalculator = () => {
       <div className={cx("input-container")}>
         <input
           type="text"
-          placeholder="Nhập họ và tên người thứ nhất"
+          placeholder="Nhập họ và tên của bạn"
           value={name1}
           onChange={(e) => 
             {
@@ -122,7 +126,7 @@ const LoveCalculator = () => {
         />
         <input
           type="text"
-          placeholder="Nhập họ và tên người thứ hai"
+          placeholder="Nhập họ và tên của người ấy"
           value={name2}
           onChange={(e) => {
             setName2(e.target.value)
