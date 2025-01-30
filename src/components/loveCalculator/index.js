@@ -62,7 +62,7 @@ const LoveCalculator = () => {
     return true;  // Nếu cả hai tên đều hợp lệ, trả về true
   };
   const calculateLove = () => {
-    const isvalid = verifyNames(name1, name2)
+    const isvalid = verifyNames(removeAccents(name1.toLowerCase()), removeAccents(name2.toLowerCase()))
     
     if (!isvalid) {
       alert("Vui lòng nhập tên hợp lệ!");
