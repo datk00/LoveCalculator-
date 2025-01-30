@@ -49,25 +49,23 @@ const LoveCalculator = () => {
       return "Chúc mừng bạn và người ấy, hai bạn là một cặp đôi hoàn hảo! Tỷ lệ phần trăm này cho thấy rằng hai bạn thực sự rất hòa hợp. Hãy trân trọng những khoảnh khắc tuyệt vời bên nhau và tạo dựng một tương lai đầy hạnh phúc nhé!";
     }
   };
-  const verifyNames = (name1, name2) => {
-    if (!name1 || !name2) {
-        return false;  
-    }
-    const namePattern = /^[a-zA-Z]+$/;  // Biểu thức chính quy chỉ cho phép chữ cái (a-z, A-Z)
-  
-    // Kiểm tra name1 và name2 có hợp lệ không
-    if (!namePattern.test(name1) || !namePattern.test(name2)) {
-      return false;  // Trả về false nếu một trong hai tên không hợp lệ
-    }
-    return true;  // Nếu cả hai tên đều hợp lệ, trả về true
-  };
+const isAlpha = (str) => {
+    // Kiểm tra nếu chuỗi có ký tự đặc biệt hoặc không phải chữ cái a-z
+    const regex = /^[a-zA-Z\s]+$/;
+    return regex.test(str);
+}
   const calculateLove = () => {
-    const isvalid = verifyNames(removeAccents(name1.toLowerCase()), removeAccents(name2.toLowerCase()))
+    let lowerStr1 = name1.toLowerCase()
+    let lowerStr2 = name2.toLowerCase()
+
+    const normalizedName1 = removeAccents(lowerStr1)
+    const normalizedName2 = removeAccents(lowerStr2)
     
-    if (!isvalid) {
+    if (!name1 || !name2 || !isAlpha(normalizedName1) || !isAlpha(normalizedName2)) {
       alert("Vui lòng nhập tên hợp lệ!");
       return;
     }
+    
 
     setIsLoading(true);
     setResult('');
